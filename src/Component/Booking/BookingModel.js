@@ -16,12 +16,73 @@ const BookingModel = ({setData}) => {
           </Modal.Header>
     
           <Modal.Body>
-            <p>{price}</p>
+            <p>Ticket Price {price} TK</p>
           </Modal.Body>
-          <input type="email" placeholder='Enter Your Email' />
-          <input type="email" placeholder='Enter Your Phone Number' />
-    
           
+    
+          <form >
+            <div className='d-flex justify-content-around'>
+            <input type="email" placeholder='Enter Your Email' required="required"/>
+          <input type="email" placeholder='Enter Your Phone Number' required="required" />
+          <input
+          
+          name="name"
+          type="text"
+          placeholder="Name"
+          
+          required="required"
+          
+        ></input>
+            </div>
+      
+      <div className=" p-2">
+      <div className="">
+          <label className="">Gender</label>
+          <div>
+            <input
+              
+              type="radio"
+              id="male"
+              name="gender"
+              value="male"
+              required="required"
+            ></input>
+            <label for="male">Male</label>
+            <input
+              
+              type="radio"
+              id="female"
+              name="gender"
+              value="female"
+              required="required"
+            ></input>
+            <label for="female">Female</label>
+          </div>
+        </div>
+       
+       
+      </div>
+      <div className="p-2">
+        
+        <div>
+          
+          <input
+           
+            name="age"
+            type="number"
+            placeholder="Age"
+            
+            required="required"
+            
+          ></input>
+        </div>
+      </div>
+      <button
+        type="submit"
+        className="bg-danger p-2 rounded mt-2"
+        
+      >Submit</button>
+    </form>
         </Modal.Dialog>
 
         </div>

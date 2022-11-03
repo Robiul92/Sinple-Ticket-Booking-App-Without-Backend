@@ -148,7 +148,7 @@ const SeateDake = () => {
         <Container className="mt-5">
           <Row key={Number(60596058969).toString()}>
             <Col className="py-3 border mb-3" key={Number(5000).toString()}>
-              <p>
+              <div>
                
                 {
                 booking.filter((sit) => sit.isBooked === true).map(sit => {
@@ -160,24 +160,25 @@ const SeateDake = () => {
                     key={sit.id}
                     sit={sit}
                     setSitData={setSitData}
+                    
 
                     ></BookingData>
 
-                    <label
+                    {/* <label
                     for="booing-modal"
                     onClick={()=>setSitData(sit)}
                     className="bg-danger p-2 rounded mt-2"
                     >
                     Confrom Booking   
-                    </label>
+                    </label> */}
 
                     </>
                   );
                 })}
-                {setData && <BookingModel setData={setData}></BookingModel>}
+                {/* {setData && <BookingModel setData={setData}></BookingModel>} */}
 
                 
-                </p>
+                </div>
 
                 
             </Col>
