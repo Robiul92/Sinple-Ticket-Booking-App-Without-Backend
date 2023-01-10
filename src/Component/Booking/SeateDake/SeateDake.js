@@ -133,7 +133,7 @@ const SeateDake = () => {
                       </div>)
 
                       :
-                      'No Sits Slected'
+                      'No Sits Slected, Please Slect a sit'
                   }
 
 
