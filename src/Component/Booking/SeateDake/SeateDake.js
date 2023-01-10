@@ -6,6 +6,8 @@ import SeatIcon from "../SeatIcon";
 import styles from '../test.css'
 import BookingModel from '../BookingModel';
 import BookingData from "../BookingData";
+import PassangerFrom from "../PassangerFrom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -22,6 +24,11 @@ const SeateDake = () => {
 
   const [booking, setBooking] = useState([]);
   const [setData, setSitData] = useState(null);
+  const Navagate = useNavigate();
+
+  const NavagateToTicketDetails = () => {
+    Navagate ('/BookTickets')
+  }
 
   useEffect(() => {
     fetch('seates.json')
@@ -48,9 +55,9 @@ const SeateDake = () => {
   const [temData, setTemData] = useState([]);
 
   const updateDetails = () => {
-    
+
     console.warn(model);
-    return setModel (true);
+    return setModel(true);
   }
 
 
@@ -86,7 +93,7 @@ const SeateDake = () => {
   return (
     <div>
 
- 
+
       <div>
 
         {booking.length > 0 && (
@@ -96,53 +103,49 @@ const SeateDake = () => {
                 <div>
 
                   {
-                    sitNo.length 
-                    ?   (<div class="card text-center">
-                    <div class="card-header">
-                      <strong className="text-danger">{sitNo.length > 1 ? 'Booked Sits' : 'Booked Sit'} </strong>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">{sitNo.length > 1 ? 'Slected Sits' : 'Slected Sit'}: {sitNo}</h5>
-                      <p class="card-text"><b>Amount</b> : {price} </p>
-                      <Button 
-                      for="booing-modal"
-                      onClick={() => updateDetails(booking)} 
-                      class="btn btn-primary">
-                        PROCEED TO BOOK
-                        </Button>
-                      <label
+                    sitNo.length
+                      ? (<div class="card text-center">
+                        <div class="card-header">
+                          <strong className="text-danger">{sitNo.length > 1 ? 'Booked Sits' : 'Booked Sit'} </strong>
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title">{sitNo.length > 1 ? 'Slected Sits' : 'Slected Sit'}: {sitNo}</h5>
+                          <p class="card-text"><b>Amount</b> : {price} </p>
+                          {sitNo && <PassangerFrom setData={setData}></PassangerFrom>}
+                          <Button
+                            // for="booing-modal"
+                            onClick={NavagateToTicketDetails}
+                            class="btn btn-primary">
+                            PROCEED TO BOOK
+                          </Button>
+                          {/* <label
                  for="booing-modal"
                  onClick={()=>setSitData(booking)}
                  className="bg-danger p-2 rounded mt-2"
                  >
                  PROCEED TO BOOK   
-                 </label>
-                      
-                      
-                    </div>
-                    
+                 </label> */}
 
-                  </div>)
 
-                  :
-                  'No Sits Slected'
+                        </div>
+
+
+                      </div>)
+
+                      :
+                      'No Sits Slected'
                   }
-                  
+
+
+
+
+
 
                   
-
-{/* <label
-                    for="booing-modal"
-                    onClick={()=>setSitData(booking)}
-                    className="bg-danger p-2 rounded mt-2"
-                    >
-                    Confrom Booking   
-                    </label> */}
-
-{sitNo && <BookingModel setData={setData}></BookingModel>}
 
                 </div>
-
+                
+                {sitNo && <BookingModel setData={setData}></BookingModel>}
 
               </Col>
             </Row>
