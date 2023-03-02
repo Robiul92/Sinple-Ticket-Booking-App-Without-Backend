@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
     flexGrow: 1
   }
 });
-console.log();
+console.log(sitNo);
 const MyDocument = () => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
-        <Text>Slect</Text>
+        {/* <Text>Slect{UserDetails.age}</Text> */}
       </View>
       <View style={styles.section}>
         <Text>Section #2</Text>

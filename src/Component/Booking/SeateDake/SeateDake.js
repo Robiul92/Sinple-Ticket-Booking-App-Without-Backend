@@ -1,64 +1,84 @@
 
 import React, { SyntheticEvent, useEffect, useState, useRef } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
+
 import SeatesDake from "../SeatesDake";
 import SeatIcon from "../SeatIcon";
 import styles from '../test.css'
 import BookingModel from '../BookingModel';
 import BookingData from "../BookingData";
-import PassangerFrom from "../PassangerFrom";
 import { useNavigate } from "react-router-dom";
+import PassangerDetails from "./PassangerDetails";
+import Context from ".././Context/Context" 
+import useSitData from "../../hooks/SitData";
 
 
 
 
 
+const HandelContext = (props ) =>{
+
+  const {booking, setBooking, sitNo, price} = useSitData();
+  
+  
+  console.log()
+  return(
+    <Context.Provider value = { price}>
+{props.children}
+  </Context.Provider>
+  );
+};
 
 
 
-const SeateDake = () => {
+const SeateDake = (props) => {
+
+const data = "I am from child";
+const {booking, setBooking, sitNo, price} = useSitData();
+
+console.log(sitNo, price);
+
+// const [booking, setBooking] = useState([]);
+// useEffect(() => {
+//   fetch('seates.json')
+//     .then(res => res.json())
+//     .then(data => setBooking(data)
+//     );
+
+// }, []);
 
 
-
-
-
-  const [booking, setBooking] = useState([]);
+  
   const [setData, setSitData] = useState(null);
   const Navagate = useNavigate();
 
   const NavagateToTicketDetails = () => {
-    Navagate ('/BookTickets')
-  }
+    Navagate ("/BookedTicket")
+  };
 
-  useEffect(() => {
-    fetch('seates.json')
-      .then(res => res.json())
-      .then(data => setBooking(data)
-      );
+  
 
-  }, []);
+ 
 
+  
 
+  // const booked = booking.filter((sit) => sit.isBooked === true);
 
-  const booked = booking.filter((sit) => sit.isBooked === true);
+  // const sitNo = booked.map(sit => <span> {sit.sitNo}, </span>)
 
-  const sitNo = booked.map(sit => <span> {sit.sitNo}, </span>)
+  // const price = booked.reduce((acc, item) => {
+  //   return acc + item.price;
+  // }, 0);
 
-  const price = booked.reduce((acc, item) => {
-    return acc + item.price;
-  }, 0);
+  // props.oNsitData(sitNo);
 
   localStorage.setItem("sitNO", booking.length.sit);
   const ref = useRef('');
 
-  const [model, setModel] = useState(false);
+  const [passengerData, setPassengerData] = useState(null);
   const [temData, setTemData] = useState([]);
 
-  const updateDetails = () => {
-
-    console.warn(model);
-    return setModel(true);
-  }
+ 
 
 
   const handleClick = (e, data) => {
@@ -92,7 +112,8 @@ const SeateDake = () => {
 
   return (
     <div>
-
+{/* <Test
+price = {price}/> */}
 
       <div>
 
@@ -104,28 +125,18 @@ const SeateDake = () => {
 
                   {
                     sitNo.length
-                      ? (<div class="card text-center">
-                        <div class="card-header">
+                      ? (<div className="card text-center">
+                        <div className="card-header">
                           <strong className="text-danger">{sitNo.length > 1 ? 'Booked Sits' : 'Booked Sit'} </strong>
                         </div>
-                        <div class="card-body">
-                          <h5 class="card-title">{sitNo.length > 1 ? 'Slected Sits' : 'Slected Sit'}: {sitNo}</h5>
-                          <p class="card-text"><b>Amount</b> : {price} </p>
-                          {sitNo && <PassangerFrom setData={setData}></PassangerFrom>}
-                          <Button
-                            // for="booing-modal"
-                            onClick={NavagateToTicketDetails}
-                            class="btn btn-primary">
-                            PROCEED TO BOOK
-                          </Button>
-                          {/* <label
-                 for="booing-modal"
-                 onClick={()=>setSitData(booking)}
-                 className="bg-danger p-2 rounded mt-2"
-                 >
-                 PROCEED TO BOOK   
-                 </label> */}
+                        <div className="card-body">
+                          <h5 className="card-title">{sitNo.length > 1 ? 'Slected Sits' : 'Slected Sit'}: {sitNo}</h5>
+                          <p className="card-text"><b>Amount</b> : {price} </p>
+                          <PassangerDetails passengerData={passengerData} setPassengerData={setPassengerData}
+                          />
 
+
+                          
 
                         </div>
 
@@ -136,16 +147,9 @@ const SeateDake = () => {
                       'No Sits Slected, Please Slect a sit'
                   }
 
-
-
-
-
-
-                  
-
                 </div>
                 
-                {sitNo && <BookingModel setData={setData}></BookingModel>}
+                
 
               </Col>
             </Row>
@@ -173,6 +177,7 @@ const SeateDake = () => {
                               for="BookingModel"
                               labelName={sit.sitNo}
                               fillColor={sit.isBooked === true ? 'green' : "#fff"}
+                              booking = {booking}
                             />
                           </p>
                         </Card>
@@ -194,5 +199,8 @@ const SeateDake = () => {
 
 
 
-
+export {HandelContext};
 export default SeateDake;
+
+
+

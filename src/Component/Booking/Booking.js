@@ -2,7 +2,7 @@ import React from 'react';
 import AvailableBooking from './AvailableBooking';
 import BookingBanner from './BookingBanner/BookingBanner'
 
-const Booking = () => {
+const Booking = (handelBookedSitData) => {
     const [date, setDate] = React.useState(new Date());
     return (
         <div>

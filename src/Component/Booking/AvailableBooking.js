@@ -7,6 +7,10 @@ import SeateDake from './SeateDake/SeateDake'
 
 const AvailableBooking = ({date}) => {
     const {booking, setBooking} = useState(null);
+    const handelBookedSitData = (sitData) => {
+        console.log(sitData)
+    }
+    
     return (
         <>
          <div>
@@ -16,7 +20,7 @@ const AvailableBooking = ({date}) => {
 
         {booking && <BookingModel booking={booking} ></BookingModel>}
 
-        <SeateDake></SeateDake>
+        <SeateDake oNsitData={handelBookedSitData} ></SeateDake>
         
         </>
        
