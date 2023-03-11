@@ -38,14 +38,6 @@ const {booking, setBooking, sitNo, price} = useSitData();
 
 console.log(sitNo, price);
 
-// const [booking, setBooking] = useState([]);
-// useEffect(() => {
-//   fetch('seates.json')
-//     .then(res => res.json())
-//     .then(data => setBooking(data)
-//     );
-
-// }, []);
 
 
   
@@ -62,17 +54,9 @@ console.log(sitNo, price);
 
   
 
-  // const booked = booking.filter((sit) => sit.isBooked === true);
+  
 
-  // const sitNo = booked.map(sit => <span> {sit.sitNo}, </span>)
-
-  // const price = booked.reduce((acc, item) => {
-  //   return acc + item.price;
-  // }, 0);
-
-  // props.oNsitData(sitNo);
-
-  localStorage.setItem("sitNO", booking.length.sit);
+  
   const ref = useRef('');
 
   const [passengerData, setPassengerData] = useState(null);
@@ -82,38 +66,29 @@ console.log(sitNo, price);
 
 
   const handleClick = (e, data) => {
-
-
-    setBooking(prevState => {
-
-      const newState = prevState.map(obj => {
-
-        if (obj.sitNo === data.sitNo) {
-          return {
-            ...obj,
-            isBooked: !obj.isBooked,
-
-          };
-
-        }
-        return obj;
-
-      });
-
-
-
-      return newState;
+  setBooking(prevState => {
+    const newState = prevState.map(obj => {
+      if (obj.sitNo === data.sitNo) {
+        return {
+          ...obj,
+          isBooked: !obj.isBooked,
+        };
+      }
+      return obj;
     });
+    const selectedSits = newState.filter(sit => sit.isBooked);
+    localStorage.setItem('sitNo', JSON.stringify(selectedSits.map(sit => sit.sitNo)));
+    localStorage.setItem('price', JSON.stringify(selectedSits.reduce((acc, sit) => acc + sit.price, 0)));
+    return newState;
+  });
+};
 
 
-
-  };
-
+  
 
   return (
     <div>
-{/* <Test
-price = {price}/> */}
+
 
       <div>
 
