@@ -9,6 +9,8 @@ import Booking from './Component/Booking/Booking';
 import BookTickets from './Component/Booking/SeateDake/BookedTicket';
 import BookedTicket from './Component/Booking/SeateDake/BookedTicket';
 import { HandelContext } from './Component/Booking/SeateDake/SeateDake';
+import TicketPDF from './Component/Booking/SeateDake/Ticket';
+import Ticket from './Component/Booking/SeateDake/Ticket';
 
 function App() {
   
@@ -26,6 +28,9 @@ function App() {
         
           <Route path='BookedTicket' element={
             <BookedTicket />
+          }></Route>
+          <Route path='Ticket' element={
+            <Ticket />
           }></Route>
         
 

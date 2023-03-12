@@ -91,8 +91,8 @@ const BookedTicket = () => {
   }, []);
 
   return (
-    <div style={styles.pdfViewer} >
-      <PDFViewer style={styles.pdfViewerDiv} border="none">
+    <div style={{ height: '100vh' }} >
+      <PDFViewer style={{ height: '100%', width: '100%' }} border="none">
         {sitNo && price && Object.keys(passengerData).length > 0 && (
           <UserDocument
             sitNo={sitNo}
